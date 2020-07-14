@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To do list</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous" />
+   <style>
+   body {
+    background:-webkit-repeating-linear-gradient(0deg, rgb(243, 227, 3) 0%, rgb(221, 0, 255) 40%, rgb(11, 206, 53) 70%, rgb(62, 150, 255) 100%);
+ }
+
+ .main-todo-input {
+     background: #fff;
+     padding: 0 119px 0 0;
+     border-radius: 1px;
+     margin-top: 200px;
+     box-shadow: 0px 0px 0px 6px rgba(255, 255, 255, 0.3)
+ }
+
+ .fl-wrap {
+     float: left;
+     width: 100%;
+     position: relative
+ }
+
+ .main-todo-input:before {
+     content: '';
+     position: absolute;
+     bottom: -40px;
+     width: 50px;
+     height: 1px;
+     background: rgba(255, 255, 255, 0.41);
+     left: 50%;
+     margin-left: -25px
+ }
+
+ .main-todo-input-item {
+     float: left;
+     width: 100%;
+     box-sizing: border-box;
+     border-right: 1px solid #eee;
+     height: 50px;
+     position: relative
+ }
+
+ .main-todo-input-item input:first-child {
+     border-radius: 100%
+ }
+
+ .main-todo-input-item input {
+     float: left;
+     border: none;
+     width: 100%;
+     height: 50px;
+     padding-left: 20px
+ }
+
+ .main-search-button {
+     background: #4DB7FE;
+ }
+
+ .main-search-button {
+     position: absolute;
+     /* right: 0px; */
+     height: 50px;
+     width: 120px;
+     color: #fff;
+     top: 0;
+     border: none;
+     border-top-right-radius: 0px;
+     border-bottom-right-radius: 0px;
+     cursor: pointer
+ }
+
+ .main-todo-input-wrap {
+     max-width: 500px;
+     margin: 20px auto;
+     position: relative
+ }
+
+ :focus {
+     outline: 0
+ }
+
+ @media only screen and (max-width: 768px) {
+     .main-todo-input {
+         background: rgba(255, 255, 255, 0.2);
+         padding: 14px 20px 10px;
+         border-radius: 10px;
+         box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.0)
+     }
+
+     .main-todo-input-item {
+         width: 100%;
+         border: 1px solid #eee;
+         height: 50px;
+         border: none;
+         margin-bottom: 10px
+     }
+
+     .main-todo-input-item input {
+         border-radius: 6px !important;
+         background: #fff
+     }
+
+     .main-search-button {
+         position: relative;
+         float: left;
+         width: 100%;
+         border-radius: 6px
+     }
+ }
+
+ .remove {
+     float: right;
+     color: #757575 !important;
+     font-size: 14px
+ }
+
+ #list-items {
+     padding-left: 20px;
+     padding-top: 15px
+ }
+
+ ul {
+     padding: 0;
+     text-align: left;
+     list-style: none
+ }
+
+ .todo-text {
+     color: #757575;
+     margin-left: 10px
+ }
+
+ .strike {
+     color: blue
+ }
+
+ .todo-listing {
+     padding: 6px 5px 0 5px;
+     margin-top: 54px !important
+ }
+</style>  
+
+</head>
+  <body>
+    <script>
+      var body = document.getElementsByTagName("body")[0];
+      var container = document.createElement("div");
+      container.classList.add("container")
+      var row1 = document.createElement("div");
+      row1.classList.add("row")
+      var col1 = document.createElement("div");
+      col1.classList.add("col-md-12")
+      var main1 = document.createElement("div");
+      main1.classList.add("main-todo-input-wrap")
+      var form_wrapper = document.createElement("div");
+      form_wrapper.className ="main-todo-input fl-wrap"
+      var form = document.createElement("form");
+      form.classList.add("main-todo-input-item")
+      form.setAttribute("action", " ");
+      var input_list = document.createElement("input");
+      var add_more_btn = document.createElement("button");
+      add_more_btn.className = 'add-items main-search-button'
+      var row2 = document.createElement("div");
+      row2.classList.add("row")
+      var col2 = document.createElement("div");
+      col2.classList.add("col-md-12")
+      var main2 = document.createElement("div");
+      main2.classList.add("main-todo-input-wrap")
+      var list_wrapper = document.createElement("div");
+      list_wrapper.className ="main-todo-input fl-wrap todo-listing"
+      var todo_list = document.createElement("ul");
+      todo_list.classList.add("list-items")
+      var todo_list_item = document.createElement("li");
+      var todo_list_item_span = document.createElement("span");
+      var edit_list = document.createElement("input");
+
+      var remove_btn = document.createElement("button");
+      // todo_list.style =
+      //   "width:300px;height:300px;border:1px solid #000000 ; padding: 10px";
+      input_list.setAttribute("type", "text");
+      body.appendChild(container);
+      container.append(row1, row2);
+      row1.appendChild(col1);
+      row2.appendChild(col2);
+      col1.appendChild(main1);
+      col2.appendChild(main2);
+      main1.appendChild(form_wrapper);
+      main2.appendChild(list_wrapper);
+      form_wrapper.appendChild(form);
+      form.appendChild(input_list);
+      form.appendChild(add_more_btn);
+      list_wrapper.appendChild(todo_list);
+      add_more_btn.innerText = "Add to list";
+      add_more_btn.onclick = function(e) {
+        e.preventDefault();
+        var input_value = input_list.value.trim();
+        input_list.value = "";
+        if (input_value != "") {
+          var todo_list_item = document.createElement("li");
+          var todo_list_item_span = document.createElement("span");
+          var edit_list = document.createElement("input");
+          edit_list.type = "text";
+          edit_list.style.display = "none";
+          todo_list_item.appendChild(edit_list);
+          var remove_btn = document.createElement("button");
+          remove_btn.className = 'btn btn-outline-secondary'
+          todo_list_item.style =
+            "width:100% ; display : flex ; justify-content : space-between; margin-bottom:10px";
+          remove_btn.innerText = "x";
+          todo_list.appendChild(todo_list_item);
+          todo_list_item.appendChild(todo_list_item_span);
+          todo_list_item.appendChild(remove_btn);
+          todo_list_item_span.innerText = input_value;
+        }
+        remove_btn.onclick = function(event) {
+          var confirmation = confirm("Do you want to remove from list");
+          if (confirmation) {
+            todo_list_item.parentNode.removeChild(todo_list_item);
+          }
+        };
+        todo_list_item_span.onclick = function(event) {
+          edit_list.style.display = "block";
+          edit_list.value = event.target.innerText;
+          event.target.style.display = "none";
+        };
+        edit_list.addEventListener("focusout", focusOutFromInput);
+        function focusOutFromInput() {
+          edit_list.style.display = "none";
+          todo_list_item_span.innerText = edit_list.value;
+          todo_list_item_span.style.display = "block";
+        }
+      };
+    </script>
+       <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+       </script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+       </script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+       
+  </body>
+</html>
